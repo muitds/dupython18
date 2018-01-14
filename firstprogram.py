@@ -8,3 +8,5 @@ x
 print(x)
 y=4
 y
+z=6
+z
