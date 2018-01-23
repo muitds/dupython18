@@ -16,8 +16,8 @@ print(L)
 type(L[0])
 
 ###works only in IPython
-#L2=[str(c) for c in L]
-#print(L2) ###
+L2=[str(c) for c in L]
+print(L2) ###
 
 L3 = [True, '2', 3.0, 4]
 print(L3)
@@ -31,9 +31,17 @@ A=array.array('i',L)  # as integer
 A
 
 #Creating arrays from Python Lists
-np.array([1,4,2,5,3])  # same datatype
+
+n1= np.array([1,4,2,5,3])  # same datatype
+type(n1)
 np.array([3.14, 4, 2., 3.])
 print(np.array([3.14, 4, 2., 3.]))
+L=[1,4,2,5,3]
+n3=np.array(L)
+type(n3)
+j=2
+for i in range(j,j+3):
+    print(i, end='')
 
 np.array([range(i, i+3) for i in [2,4,6]])
 #inner lists as rows
@@ -63,7 +71,15 @@ np.zeros(10, dtype=np.int16)
 import numpy as np
 np.random.seed(0)
 x1= np.random. randint(10, size=6)
+x1
+
 print(x1)
+np.random.randint(4)
+np.random.randint(4, size=3)
+np.random.randint(4, size=(3,1))
+np.random.randint(4, size=(3,2))
+np.random.randint(4, size=(3,3))
+
 x2= np.random.randint(10, size=(3,4))
 x3= np.random.randint(10, size=(3,4,5))
 x2
@@ -89,7 +105,7 @@ x2[2,0]
 x2[2,-1]
 x2[0,0]=12  #mutable
 x2
-x1[0] = 3.14  # truncated
+x1[0] = 3.14  # truncated decimal value
 x1
 
 #Array Slicing : Accessing Subarrays
@@ -108,6 +124,7 @@ x[5::-2]
 
 #Multi Dimn subarrays
 x2
+type(x2)
 x2[:2, :3]
 x2[:3,::2]
 x2
