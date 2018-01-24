@@ -177,8 +177,9 @@ x%2
 
 #wrappers
 np.add(x, 2)
+x+2
 np.subtract(x,5)
-
+x-5
 x = np.array([-2,-1,0,1,2])
 x
 np.abs(x)
@@ -200,6 +201,22 @@ np.arctan(x)
 #exponents
 x=[1,2,3]
 x
+pow(2.71,1)
+pow(2.71,[1,2])  # error
+2.71**2
+basic = [2.71*x for x in [1,2,3]]
+basic
+basic = [x*x for x in range(4)]
+basic
+
+
+import math
+math.pow(1,4)
+math.pow(1,2)
+basic = [x**2 for x in range(11)]
+basic
+
+
 np.exp(x)
 np.exp2(x)
 np.power(3,x)
