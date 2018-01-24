@@ -18,9 +18,32 @@ for c in lmsg:
     print(c)
     if c.isalpha():
         print(key[name.index(c)], end='')
-    
-    
-    if c.isalpha():
-        printkey(name.index(c), end='')
-    else:
-        print(c, end='')
+
+L=[1,2,3]
+L
+L1= input('Enter a no')
+L1
+L2=eval(input('Enter a no'))
+L2
+L3=eval(input('Enter a nos with space'))
+L3
+
+len(L)
+
+for i in L:
+    print(i)
+
+s = input()
+numbers = list(map(int, s.split()))
+numbers
+L=[]
+for i in range(10):
+    L.append(i)
+L
+
+import random
+print(random.randrange(1,2,10))
+random.randrange(2,3,10)
+random.seed(0)
+random.random()
+random.randrange(1, 10, 4)
