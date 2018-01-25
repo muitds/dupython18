@@ -35,8 +35,6 @@ h,t=None,None;
 iris.target
 iris
 str(iris)
-
-
 clf = clf.fit(iris.data, iris.target)
 clf
 #conda install python-graphviz
