@@ -34,6 +34,8 @@ DecisionTreeClassifier(class_weight=None, criterion='gini', max_depth=3,max_feat
 
 clf_entropy = DecisionTreeClassifier(criterion = "entropy", random_state = 100, max_depth=3, min_samples_leaf=5)
 
+tree.export_graphviz(clf_entropy, out_file='tree.dot') 
+
 clf_entropy.fit(X_train, y_train)
 
 clf_gini.predict([[4, 4, 3, 3]])
@@ -48,3 +50,8 @@ y_pred_en
 accuracy_score(y_test,y_pred)*100
 
 accuracy_score(y_test,y_pred_en)*100
+
+import graphviz 
+dot_data = tree.export_graphviz(clf_entropy, out_file=None) 
+graph = graphviz.Source(dot_data) 
+graph.render("iris") 
