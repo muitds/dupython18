@@ -21,6 +21,17 @@ if not L1[4]:
 else:
     print('Hellow')
 
+L3 = [1,2,3, {101:'S1'}, {1,2,3}]
+L3 
+L3[1]
+L3[3]
+L3[3].values()
+L3[3].keys()
+L3[3].items()
+L3[3].items()
+
+
+type(L3[2])
 
 M = ('dept',(23,'MG road'),[50,34,'India'])
 

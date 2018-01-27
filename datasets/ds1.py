@@ -16,8 +16,12 @@ df.describe()
 df = data1('mtcars')
 df
 df.describe()
-
+df2 = data1('mtcars')
+df2.describe()
 print(r.data())
+df3=pandas2ri.ri2py(r('women'))
+df3
+
 #$ pip install pydataset
 #then just load up any dataset you wish (currently around 757 datasets available) :
 
