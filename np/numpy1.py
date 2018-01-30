@@ -4,9 +4,11 @@ Created on Wed Dec 20 08:28:57 2017 by Dhiraj Upadhyaya
 Introduction to NumPy Numerical Python
 """
 import numpy
-print(numpy.version.version)
+numpy.version.version
 
 import numpy as np
+np.version.version
+
 
 #np.<TAB> or np?
 
