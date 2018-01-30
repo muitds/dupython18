@@ -24,14 +24,15 @@ L
 sum(L)  # error
 sum(L[1:4])   # do numeric functions on numeric values
 L[1:4]
-L[len(L)-1].upper()  # do all character functions on this index value
+L[len(L)-2].upper()  # do all character functions on this index value
 
 # Lists inside a List
-L4 = [1,2,[L2]]
+L4 = [1,2,L2]
 print(L4)
 L4[1]
 L4[2]  # L4[2][0]
-L4[2][0][2]  # understand this
+L4
+L4[2][2]  # understand this
 
 # Multiple Levels
 L5a=[1,2,3,4,5]
@@ -54,6 +55,8 @@ D1['dean']
 D2 = {'a':L1,'b':L3}
 D2
 D3 = {'a':L1,'b':L2}
+D3
+#D3.pop('b')
 D3['c']=D3.pop('b')   # change name of key
 D3
 D3['c'][3]='z'  # a to z
@@ -63,8 +66,11 @@ for key in D2:
 	print(key, end=' ')
 	print(D2[key], end=' ')
 
+
+
+
 #List to a Set
-L1=[1,2,3,4,5]
+L1=[1,2,3,4,5,5]
 S1 =set(L1)
 type(S1)
-
+S1
