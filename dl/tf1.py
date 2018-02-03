@@ -38,3 +38,5 @@ model.compile(loss='categorical_crossentropy', optimizer='adam', metrics= ['accu
 #%%
 model.summary()
 model.fit(X_train, y_train, batch_size=200, epochs=10)
+scores = model.evaluate(X_test, y_test)
+scores
