@@ -152,7 +152,7 @@ plt.title("Height")
 plt.xlabel(" Height cm")
 plt.ylabel("Numbers")
 
-#%%  Computation on Arrays : Broadcasting
+#%%  Pg 62 Computation on Arrays : Broadcasting
 a = np.array([0,1,2])
 b = np.array([5,5,5])
 a + b
@@ -200,6 +200,83 @@ M + a
 a[:, np.newaxis].shape
 M.shape
 M + a[:, np.newaxis]
+#%% Pg 70 Comparisons, Masks & Boolean Logic
+
+#Example : Counting Rainy Days
+import numpy as np
+import pandas as pd
+
+# use pandas to extract rainfall inches as a NumPy array
+rainfall = pd.read_csv("pdabook/Seattle2014.csv")["PRCP"].values
+#url = "https://github.com/jakevdp/PythonDataScienceHandbook/blob/master/notebooks/data/Seattle2014.csv"
+#rainfall = pd.read_csv(url)
+inches = rainfall / 254
+inches.shape
+inches = rainfall / 254.0  # 1/10mm -> inches
+inches.shape
+inches[1:10]
+
+%matplotlib inline
+import matplotlib.pyplot as plt
+import seaborn ; seaborn.set()
+plt.hist(inches, 40)
+
+#Comparison Operators as ufuncs
+x = np.array([1,2,3,4,5])
+x
+x<3  # which all x values < 3
+x<=3
+x==3
+x!=3
+np.equal(x,3)
+np.greater(x,3)
+
+rng = np.random.RandomState(0)
+x = rng.randint(10, size=(3,4))
+x
+x< 6
+# Pg 73 Working with Boolean Arrays
+x
+np.count_nonzero(x < 6)
+np.sum(x < 6)
+np.sum(x < 6, axis=1)
+np.any(x > 8)
+np.all(x < 10)
+np.all(x < 8, axis=1)
+x
+
+
+#Pg 74 Boolean operators
+np.sum((inches > 0.5) & (inches < 1))
+np.sum((x > 3) & (x < 8))  # 2 brackets
+
+x < 5
+x[x < 5]   # all values 1-D which satisfy the condition
+
+#%% Pg 78 Fancy Indexing
+
+
+# Combined Indexing
+
+# Selecting Random Points
+
+
+# Modifying Values with Fancy Indexing
+
+# Binning Data
+np.random.seed(42)
+x = np.random.randn(100)
+bins = np.linspace(-5,5,20)
+bins
+counts = np.zeros_like(bins)
+i = np.searchsorted(bins, x)
+i  # into bins
+np.add.at(counts, i, 1)
+plt.plot(bins, counts, linestyle='steps')
+
+#faster way
+plt.hist(x, bins, histtype='step')
+
 
 #%% Pg 86 - Fast Sorting  in NP
 x = np.array([2,1,4,3,5])
@@ -228,16 +305,21 @@ np.sort(X, axis=1)  #rowwise
 np.sort(X)  #default is rowwise
 np.sort(X, axis=None)  #make it 1D and sort
 
-#Partial Sort : Partitioning
+# 88 Partial Sort : Partitioning
 x = np.array([7,2,3,1,6,5,4])
 np.partition(x,3)  # 3 in betw left less, right more
 np.partition(x,5) 
+
+rand = np.random.RandomState(42)
+X = rand.randint(0,10, (4,6))
 X
-np.partition(X, 2, axis=1)
-np.partition(X, 3, axis=0)
-np.partition(X, 3, axis=None)
+np.partition(X, 2, axis=1)  # col
+np.partition(X, 3, axis=0) # row
+np.partition(X, 3, axis=None)  # 1D
 
 #%% K nearest Neighbours
+
+#Later
 
 
 #%% Array Concatenation and Splitting
@@ -286,7 +368,7 @@ print(right)
 #%% ---------------####
 
 
-#%% Structured Data 
+#%%  Pg 92 Structured Data 
 name = ['Achal','Apoorva','Goldie','Hitesh']
 age = [24, 25, 40, 26]
 weight = [67, 72, 73, 77]
@@ -317,3 +399,4 @@ data2['name'] = name
 data2
 dtype3= np.dtype([('name','U10'),('age','i4'),('weight','f8')])
 data3 = np.zeros(0, dtype=dtype3)
+
