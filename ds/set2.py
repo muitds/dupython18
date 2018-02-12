@@ -19,9 +19,6 @@ S3.issuperset(S1)
 S1.issuperset(S3)
 
 
-	a.difference(b)
-		set([1])
-	a.symmetric_difference(b)
-		set([1, 4])
-	a.copy()
-		set([1, 2, 3])
+S1.difference(S3)
+S1.symmetric_difference(S2)
+S1.copy()
