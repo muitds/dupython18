@@ -2,6 +2,7 @@
 """
 Tue Feb  6 10:32:09 2018: Dhiraj
 """
+
 #Chapter-2
 
 #%% Numpy Array Attributes
