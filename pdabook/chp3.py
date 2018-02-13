@@ -105,40 +105,57 @@ indA ^ indB # sym diff
 #Data Selection in Series
 #Series as dictionary
 import pandas as pd
+import numpy as np
 data = pd.Series([0.25, 0.5, 0.75, 1.0])
 data
 data.index
 data.index = ['a','b','c','d']
 data
-rollno = [109,102,105,106,103,110,101,107,104,111,108]
-name = ['meena','apoorva','kastav','shubam', 'goldie',
+#%% Student Data
+rollnoL = [109,102,105,106,103,110,101,107,104,111,108]
+nameL = ['meena','apoorva','kastav','shubam', 'goldie',
         'hitesh', 'shruti','vijay','achal','lalit','varun']
-gender =['F','F','M','M','M','M','F','M','M','M','M',]
-python = np.random.randint(60,90,11)
-sas = np.random.randint(65,85,11)
+genderL =['F','F','M','M','M','M','F','M','M','M','M']
+pythonL = np.random.randint(60,90,11)
+sasL = np.random.randint(65,85,11)
 
-students = pd.Series(name, index=rollno)
-students
-112 in students  # rollno
-111 in students
-students.keys()
-students.items
-list(students.items())
-students[111]='jain'
-students
+rollnoL
+nameL
+genderL
+pythonL
+sasL
+nameS = pd.Series(nameL, index=rollnoL)
+nameS
+112 in nameS  # rollno
+111 in nameS
+nameS.keys()
+nameS.values
+nameS.items
+list(nameS.items())  # list form
+
+nameS[108]='jain'
+nameS[nameS == "jain"]
+nameS[nameS == 108]  # wrong
 
 #Series as 1 D Array
-students[0:5]
-students[111:115]  # nothing
+nameS[0:5]
+nameS[101:106]  # nothing
 
 #indexers
-students.loc[0]
-students.iloc[0]
-students.loc[111]
-students.ix[111]
-students.iloc[0:5]
-students.loc[103:108]
+nameS.loc[0] # error  no such label
+nameS.loc[108]
+nameS.loc[103:110]
 
+
+nameS.iloc[0]  #first row
+nameS[nameS=='meena']
+nameS.iloc[0:5]
+nameS[0] # error
+nameS[0:1]
+
+nameS.ix[108] # being depreciated
+
+#%%
 # Data Selection in DF
 area
 population
@@ -151,40 +168,47 @@ states.area is states['area']
 # DF as 2D Array
 states.values
 
-#%% Student Data
-rollno = pd.Series([109,102,105,106,103,110,101,107,104,111,108])
-name = pd.Series(['meena','apoorva','kastav','shubam', 'goldie',
-        'hitesh', 'shruti','vijay','achal','lalit','varun'])
-gender = pd.Series(['F','F','M','M','M','M','F','M','M','M','M'])
-python = pd.Series(np.random.randint(60,90,11))
-sas = pd.Series(np.random.randint(65,85,11))
+#%% Student Data  use existing lists
 
-studentDF = pd.concat([rollno, name, gender, python, sas], axis=1)
-studentDF
+rollnoS = pd.Series(rollnoL)
+nameS = pd.Series(nameL)
+genderS = pd.Series(genderL)
+pythonS = pd.Series(pythonL)
+sasS = pd.Series(sasL)
 
-studentDF2 = pd.DataFrame({'rollno':rollno, 'name':name, 'gender':gender,
+
+
+
+#from Lists
+studentDF1 = pd.DataFrame({'rollno':rollno, 'name':name, 'gender':gender,
                 'python':python, 'sas':sas})
-studentDF2
-studentDF2.index = rollno
+studentDF1
+studentDF1.index = rollno
+studentDF1
+
+#from Series
+studentDF2 = pd.concat([rollnoS, nameS, genderS, pythonS, sasS], axis=1)
 studentDF2
 
+
+# Dictionary Format
 studentDF3 = pd.DataFrame({'rollno':rollno, 'sname':name, 'gender':gender,
                 'python':python, 'sas':sas}, 
                  columns=['rollno','sname','gender', 'python', 'sas'])
-studentDF3
 studentDF3.index = rollno
 studentDF3
 studentDF3.values   # as array
 studentDF3.T
+
 studentDF3.values[0]  # first row
 studentDF3['sname']
 studentDF3.iloc[:3,:2]
 studentDF3.loc[:105,:'python']
-studentDF3.iloc[0:,0:2]
+studentDF3.iloc[0:5,0:2]
 studentDF3.ix[:105,:'gender']  # can be confusion here
 studentDF3.ix[:5,:'gender']  # error
 studentDF3['total'] = studentDF3['python'] + studentDF3['sas']
-studentDF3
+studentDF3.head()
 studentDF3[studentDF3.total > 150]
 
 
@@ -196,6 +220,7 @@ np.random.seed(0)
 name1 = ['meena','apoorva','kastav','shubam', 'goldie',
         'hitesh', 'shruti','vijay','achal','lalit','varun']
 python = pd.Series(np.random.randint(60,90,11), index=name1)
+python
 
 np.random.seed(10)
 name2 = ['varun', 'meena','vijay', 'apoorva','lalit', 'kastav',
@@ -210,6 +235,7 @@ name3 = [ 'meena','vijay', 'apoorva','kastav',
          'shubam', 'goldie','hitesh','achal']
 hadoop = pd.Series(np.random.randint(65,85,8),index=name3)
 hadoop
+(python + sas)
 (python + sas + hadoop)
 python + hadoop
 python.add(hadoop, fill_value=0)
@@ -217,20 +243,25 @@ python.add(hadoop, fill_value=0)
 
 # Index alignment in DF
 
-A = pd.DataFrame(np.random.randint(0,20,(2,2)), columns=list('AB'))
-B = pd.DataFrame(np.random.randint(0,10,(3,3)), columns=list('BAC'))
+A = pd.DataFrame(np.random.randint(0,20,(2,2)), columns=list('ab'))
+A
+B = pd.DataFrame(np.random.randint(0,10,(3,3)), columns=list('bac'))
+B
+
 A + B
 
-A = pd.DataFrame(python, index=name1)
-B = pd.DataFrame(sas, index=name2)
-C = pd.DataFrame(hadoop, index=name3)
-pd.concat(python, sas, hadoop)
-studentDF4 = pd.concat([A,B,C], axis=1)
+P = pd.DataFrame(python, index=name1)
+S = pd.DataFrame(sas, index=name2)
+H = pd.DataFrame(hadoop, index=name3)
+#pd.concat(python, sas, hadoop)
+studentDF4 = pd.concat([P,S,H], axis=1)
 studentDF4.columns = ['python','sas','hadoop']
+
 
 studentDF4b =studentDF4.copy()
 studentDF4b.fillna(0, inplace=True)
 studentDF4b
+studentDF4b['total'] = studentDF4b['python'] + studentDF4b['sas'] + studentDF4b['hadoop'] 
 studentDF4b
 
 
