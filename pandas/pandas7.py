@@ -12,7 +12,7 @@ data = ['achal', 'apporva','goldie', 'hitesh']
 data
 [s.capitalize() for s in data]
 
-data = ['achal', 'apporva',None, 'HitesH']
+data = ['achal', 'apporva', None, 'HitesH']
 [s.capitalize() for s in data]
 #error
 

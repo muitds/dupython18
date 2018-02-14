@@ -113,8 +113,7 @@ data.index = ['a','b','c','d']
 data
 #%% Student Data
 rollnoL = [109,102,105,106,103,110,101,107,104,111,108]
-nameL = ['meena','apoorva','kastav','shubam', 'goldie',
-        'hitesh', 'shruti','vijay','achal','lalit','varun']
+nameL = ['meena','apoorva','kastav','shubam', 'goldie', 'hitesh', 'shruti', 'vijay','achal', 'lalit', 'varun']
 genderL =['F','F','M','M','M','M','F','M','M','M','M']
 pythonL = np.random.randint(60,90,11)
 sasL = np.random.randint(65,85,11)
@@ -139,6 +138,7 @@ nameS[nameS == 108]  # wrong
 
 #Series as 1 D Array
 nameS[0:5]
+nameS[0:5].shape
 nameS[101:106]  # nothing
 
 #indexers
@@ -180,11 +180,13 @@ sasS = pd.Series(sasL)
 
 
 #from Lists
-studentDF1 = pd.DataFrame({'rollno':rollno, 'name':name, 'gender':gender,
-                'python':python, 'sas':sas})
+studentDF1 = pd.DataFrame({'rollno':rollnoL,'name':nameL, 'gender':genderL, 'python':pythonL, 'sas':sasL})
 studentDF1
-studentDF1.index = rollno
+studentDF1.index = rollnoL
 studentDF1
+
+studentDF1.to_csv("students1.csv")
+
 
 #from Series
 studentDF2 = pd.concat([rollnoS, nameS, genderS, pythonS, sasS], axis=1)
@@ -192,9 +194,7 @@ studentDF2
 
 
 # Dictionary Format
-studentDF3 = pd.DataFrame({'rollno':rollno, 'sname':name, 'gender':gender,
-                'python':python, 'sas':sas}, 
-                 columns=['rollno','sname','gender', 'python', 'sas'])
+studentDF3 = pd.DataFrame({'rollno':rollno, 'sname':name, 'gender':gender,                'python':python, 'sas':sas},                 columns=['rollno','sname','gender', 'python', 'sas'])
 studentDF3.index = rollno
 studentDF3
 studentDF3.values   # as array
@@ -217,8 +217,7 @@ studentDF3[studentDF3.total > 150]
 # Index alignment
 
 np.random.seed(0)
-name1 = ['meena','apoorva','kastav','shubam', 'goldie',
-        'hitesh', 'shruti','vijay','achal','lalit','varun']
+name1 = ['meena','apoorva','kastav','shubam', 'goldie','hitesh','shruti','vijay','achal','lalit','varun']
 python = pd.Series(np.random.randint(60,90,11), index=name1)
 python
 
@@ -364,5 +363,6 @@ studentDF4
 studentDF4.fillna(0)  # does not replace
 studentDF4.fillna(method='ffill')  # does not replace
 studentDF4.fillna(method='ffill', axis=1)  # does not replace
+
 
 

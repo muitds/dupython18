@@ -10,9 +10,6 @@ x
 x = rng.rand(1E6//4)
 x
 
-
-
-
 #pandas.eval() 
 import pandas as pd
 nrows, ncols = 100000, 100
