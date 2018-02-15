@@ -7,7 +7,7 @@ import numpy as np
 import pandas as pd
 rollnoL = [109,102,105,106,103,110,101,107,104,111,108]
 nameL = ['meena','apoorva','kastav','shubam', 'goldie', 'hitesh', 'shruti', 'vijay','achal', 'lalit', 'varun']
-courseL= ['pg','pg','msc','msc','pg','pg','pg','pg','pg','pg','bsc']
+courseL= ['pg','pg','msc', 'msc','pg','pg','pg', 'pg','pg','pg','bsc']
 genderL =['F','F','M','M','M','M','F','M','M','M','M']
 
 pythonL = np.random.randint(60,90,11)
@@ -24,6 +24,7 @@ sasS = pd.Series(sasL)
 hadoopS = pd.Series(hadoopL)
 feesS = pd.Series(feesL)
 #hostelS = pd.Series([True, False, True, False, False, True, False, True, True, True, False])
+hostelS = pd.Series(hostelL)
 feesS = pd.Series(feesL)
 courseS = pd.Series(courseL)
 
@@ -73,6 +74,7 @@ sclass = random.choice(classes, 11)
 sclass
 studentDF2['sclass'] = pd.Series(sclass)
 studentDF2
+studentDF2.to_csv("students3.csv")
 pd.pivot_table(studentDF2, index=['name'])
 pd.pivot_table(studentDF2, index=['name', 'sclass','hostel'])
 pd.pivot_table(studentDF2, index=['sclass','gender'])
