@@ -366,3 +366,30 @@ studentDF4.fillna(method='ffill', axis=1)  # does not replace
 
 
 
+#%% Pg 170 Pivot Tables
+import numpy as np
+import pandas as pd
+import seaborn as sns
+titanic = sns.load_dataset('titanic')
+titanic.head()
+titanic.columns
+
+#Pivot tables by hand
+titanic.groupby('sex')[['survived']].mean()
+titanic.groupby('sex')[['survived']].sum()
+titanic.sex.count()
+titanic.groupby('sex').sum()
+titanic.groupby(['sex','class'])[ 'survived'].aggregate( 'mean').unstack()
+
+#Pivot Table Syntax
+titanic.pivot_table('survived', index='sex', columns='class')
+# distribution of class with sex for survived people
+
+# multi-level
+age = pd.cut(titanic['age'], [0, 18, 50, 80])
+titanic.pivot_table('survived', ['sex', age], 'class')
+titanic.pivot_table('survived', [age], 'class')
+
+fare = pd.qcut(titanic['fare'], 2)  #quantiles
+fare
+titanic.pivot_table('survived', ['sex', age], [fare, 'class'])
