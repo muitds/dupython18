@@ -13,6 +13,7 @@ students.select_dtypes(['object']) # only string
 students['rollno'].dtype
 students.index = students.rollno
 students.drop(labels='Unnamed: 0',axis=1, inplace=True)
+del students['Unnamed: 0']
 students.describe()
 students.groupby('course')['sclass'].describe()
 students.groupby('course')['sclass'].describe().unstack()

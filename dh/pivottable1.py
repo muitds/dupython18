@@ -103,9 +103,6 @@ table.query("course ==['pg','bsc']")
 
 # Pivot
 studentDF2.pivot(index='name', columns='sclass', values='total')
-pd.pivot?
-
-
 
 # 
 import datetime
