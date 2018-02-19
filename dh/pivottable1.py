@@ -9,11 +9,10 @@ rollnoL = [109,102,105,106,103,110,101,107,104,111,108]
 nameL = ['meena','apoorva','kastav','shubam', 'goldie', 'hitesh', 'shruti', 'vijay','achal', 'lalit', 'varun']
 courseL= ['pg','pg','msc', 'msc','pg','pg','pg', 'pg','pg','pg','bsc']
 genderL =['F','F','M','M','M','M','F','M','M','M','M']
-
 pythonL = np.random.randint(60,90,11)
 sasL = np.random.randint(65,85,11)
 hadoopL = np.random.randint(71,90,11)
-feesL = np.random.randint(1000000, 1500000, 11)
+feesL = np.random.randint(100000, 150000, 11)
 hostelL = [True, False, True, False, False, True, False, True, True, True, False]
 
 rollnoS = pd.Series(rollnoL)
@@ -28,7 +27,7 @@ hostelS = pd.Series(hostelL)
 feesS = pd.Series(feesL)
 courseS = pd.Series(courseL)
 
-studentDF1 = pd.DataFrame({'rollno':rollnoL,'name':nameL, 'gender':genderL, 'python':pythonL, 'sas':sasL, 'hadoop':hadoopL, 'fees':feesL, 'course':courseS}, columns = ['rollno','name', 'gender', 'python', 'sas', 'hadoop', 'fees', 'course'])
+studentDF1 = pd.DataFrame({'rollno':rollnoL,'name':nameL, 'gender':genderL, 'python':pythonL, 'sas':sasL, 'hadoop':hadoopL, 'fees':feesL, 'course':courseL}, columns = ['rollno','name', 'gender', 'python', 'sas', 'hadoop', 'fees', 'course'])
 studentDF1
 studentDF1.index = rollnoL
 studentDF1
@@ -50,7 +49,7 @@ studentDF2.groupby('gender').mean()
 studentDF2.groupby('gender').size()
 #studentDF2.groupby('gender').filter(lambda gender: gender.size > 8)
 
-studentDF2.groupby(['gender','course'])['hostel'].aggregate('mean').unstack()
+studentDF2.groupby(['gender','course'])['hostel' ].aggregate( 'mean' ).unstack()
 # similar output
 studentDF2.pivot_table('hostel', index='gender', columns='course')
 
@@ -69,12 +68,13 @@ studentDF2.pivot_table('hostel',['gender', total], 'course')
 #Random values for a column
 from numpy import random
 
-classes = ['C1', 'C2', 'C3']       # a sequence or set will work here.
+classes = ['C1', 'C2', 'C3']       
 sclass = random.choice(classes, 11)
 sclass
 studentDF2['sclass'] = pd.Series(sclass)
 studentDF2
 studentDF2.to_csv("students3.csv")
+studentDF2.columns
 pd.pivot_table(studentDF2, index=['name'])
 pd.pivot_table(studentDF2, index=['name', 'sclass','hostel'])
 pd.pivot_table(studentDF2, index=['sclass','gender'])
