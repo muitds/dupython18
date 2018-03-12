@@ -13,6 +13,7 @@ np.random.seed(0)
 data = np.array(np.random.randint(1,100,50))
 data
 
+list('ABCDE')
 df = pd.DataFrame(np.reshape(data, (10,5)))
 df.columns=[list('ABCDE')]
 df
