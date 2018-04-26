@@ -47,3 +47,5 @@ df.isnull().any(axis=1).sum()
 df.isnull()
 df.isnull().values.any()
 df.isnull().sum()
+
+df.dropna()

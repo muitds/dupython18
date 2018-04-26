@@ -2,12 +2,53 @@
 """
 Created on Tue Dec 26 19:26:24 2017 by Dhiraj Upadhyaya
 """
+import pandas as pd
+import numpy as np
+
+vals1 = np.array([1, None, 3, 4])
+vals1
+sum(vals1)
+
 
 #Missing Values
 import pandas as pd
 import numpy as np
-vals = np.array([1,np.nan, 3,4])
-vals
+vals2 = np.array([1,np.nan, 3,4])
+vals2
+1 + np.nan
+vals2.sum()
+vals2.min()
+vals2.max()
+np.nansum(vals2)
+np.nanmax(vals2)
+
+pd.Series([1, np.nan, 2, None])
+#upcast to floating point due None
+#x = pd.Series(range(2), dtype=int)
+#x
+#x[0] = np.nan
+#x
+
+
+
+#Operating on Null Values
+#is.null(), notnull, dropna, fillna
+
+#detecting Null Values
+data = pd.Series([1, np.nan, 'hello', None])
+data
+data.isnull()
+data[data.notnull()]
+
+data.dropna()
+
+# for df, it will drop na values by default
+df.dropna()
+df
+df.dropna(axis='columns')
+
+df.drop
+
 
 np.random.seed(0)
 data = np.array(np.random.randint(1,100,50))
